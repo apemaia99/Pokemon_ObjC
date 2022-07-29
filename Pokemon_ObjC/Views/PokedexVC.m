@@ -8,6 +8,14 @@
 #import "PokedexVC.h"
 
 @interface PokedexVC ()
+//MARK: - Private Properties and Methods Blueprints
+@property(strong, null_unspecified, nonatomic) UITableView *tableView;
+
+- (void)configureVC;
+
+- (UITableView *_Nonnull)createTableView;
+
+- (UIBarButtonItem *_Nonnull)createNavBarMenu;
 
 @end
 
@@ -16,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureVC];
-    _tableView = [self createTableView];
+    self.tableView = [self createTableView];
     
 }
 //MARK: - Views Configuration

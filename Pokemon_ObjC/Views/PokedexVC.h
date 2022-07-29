@@ -8,13 +8,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PokedexVC : UIViewController <UITableViewDelegate, UITableViewDataSource>
-
-@property(strong, null_unspecified, nonatomic) UITableView *tableView;
-
-- (void)configureVC;
-
-- (UITableView *_Nonnull)createTableView;
-
-- (UIBarButtonItem *_Nonnull)createNavBarMenu;
-
+//MARK: - Public Properties and Public Methods Blueprints
 @end
