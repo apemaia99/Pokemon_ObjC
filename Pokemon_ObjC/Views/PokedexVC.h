@@ -8,5 +8,5 @@
 #import <UIKit/UIKit.h>
 
 @interface PokedexVC : UIViewController <UITableViewDelegate, UITableViewDataSource>
-//MARK: - Public Properties and Public Methods Blueprints
+//MARK: - Public Properties and Methods Blueprints
 @end
