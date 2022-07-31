@@ -28,7 +28,7 @@
     self.tableView = [self createTableView];
     
     
-    [NetworkService fetchDataAsDictionaryByUrl: [NSURL URLWithString:@"https://pokeapi.co/api/v2/pokemon/6/"]
+    [NetworkService fetchDataWithDictionaryRootByUrl: [NSURL URLWithString:@"https://pokeapi.co/api/v2/pokemon/6/"]
                         completion:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
         
         
