@@ -10,7 +10,7 @@
 @implementation NetworkService
 
 + (void)fetchDataAsDictionaryByUrl:(NSURL * _Nonnull)url
-            completion:(void (^ _Nonnull)(NSDictionary * _Nullable data, NSError * _Nullable error))completionHandler {
+                        completion:(void (^ _Nonnull)(NSDictionary * _Nullable data, NSError * _Nullable error))completionHandler {
     
     [[NSURLSession.sharedSession dataTaskWithURL:url
                                completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -24,8 +24,8 @@
         NSError *serializationError = nil;
         
         NSDictionary *serialized = [NSJSONSerialization JSONObjectWithData:data
-                                                              options:0
-                                                                error:&serializationError];
+                                                                   options:0
+                                                                     error:&serializationError];
         
         if (serializationError) {
             completionHandler(nil, error);
@@ -38,7 +38,7 @@
 }
 
 + (void)fetchDataAsArrayByUrl:(NSURL * _Nonnull)url
-            completion:(void (^ _Nonnull)(NSArray * _Nullable data, NSError * _Nullable error))completionHandler {
+                   completion:(void (^ _Nonnull)(NSArray * _Nullable data, NSError * _Nullable error))completionHandler {
     
     [[NSURLSession.sharedSession dataTaskWithURL:url
                                completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {

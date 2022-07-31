@@ -45,8 +45,6 @@
 			children = (
 				68169C9E2893526900A37430 /* PokedexVC.h */,
 				68169C9F2893526900A37430 /* PokedexVC.m */,
-				687459F82895E11200C1F18D /* NetworkService.h */,
-				687459F92895E15200C1F18D /* NetworkService.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -73,12 +71,22 @@
 				68169C982893526900A37430 /* AppDelegate.h */,
 				68169C992893526900A37430 /* AppDelegate.m */,
 				680C39BA2893FE7B00BB212A /* Views */,
+				687459FC289601A700C1F18D /* Services */,
 				68169CA42893526A00A37430 /* Assets.xcassets */,
 				68169CA62893526A00A37430 /* LaunchScreen.storyboard */,
 				68169CA92893526A00A37430 /* Info.plist */,
 				68169CAA2893526A00A37430 /* main.m */,
 			);
 			path = Pokemon_ObjC;
+			sourceTree = "<group>";
+		};
+		687459FC289601A700C1F18D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				687459F82895E11200C1F18D /* NetworkService.h */,
+				687459F92895E15200C1F18D /* NetworkService.m */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
