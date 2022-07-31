@@ -12,6 +12,7 @@
 		68169CA52893526A00A37430 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68169CA42893526A00A37430 /* Assets.xcassets */; };
 		68169CA82893526A00A37430 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68169CA62893526A00A37430 /* LaunchScreen.storyboard */; };
 		68169CAB2893526A00A37430 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68169CAA2893526A00A37430 /* main.m */; };
+		687459FA2895E15200C1F18D /* NetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 687459F92895E15200C1F18D /* NetworkService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,8 @@
 		68169CA72893526A00A37430 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		68169CA92893526A00A37430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68169CAA2893526A00A37430 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		687459F82895E11200C1F18D /* NetworkService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkService.h; sourceTree = "<group>"; };
+		687459F92895E15200C1F18D /* NetworkService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +45,8 @@
 			children = (
 				68169C9E2893526900A37430 /* PokedexVC.h */,
 				68169C9F2893526900A37430 /* PokedexVC.m */,
+				687459F82895E11200C1F18D /* NetworkService.h */,
+				687459F92895E15200C1F18D /* NetworkService.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 			files = (
 				68169CA02893526900A37430 /* PokedexVC.m in Sources */,
 				68169C9A2893526900A37430 /* AppDelegate.m in Sources */,
+				687459FA2895E15200C1F18D /* NetworkService.m in Sources */,
 				68169CAB2893526A00A37430 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

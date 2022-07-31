@@ -6,6 +6,7 @@
 //
 
 #import "PokedexVC.h"
+#import "NetworkService.h"
 
 @interface PokedexVC ()
 //MARK: - Private Properties and Methods Blueprints
@@ -25,6 +26,17 @@
     [super viewDidLoad];
     [self configureVC];
     self.tableView = [self createTableView];
+    
+    
+    [NetworkService fetchDataAsDictionaryByUrl: [NSURL URLWithString:@"https://pokeapi.co/api/v2/pokemon/6/"]
+                        completion:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
+        
+        
+        for (NSDictionary *key in data) {
+            NSLog(@"%@", [data objectForKey:key]);
+            
+        }
+    }];
     
 }
 //MARK: - Views Configuration
