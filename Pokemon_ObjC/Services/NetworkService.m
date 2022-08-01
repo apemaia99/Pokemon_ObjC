@@ -9,33 +9,8 @@
 
 @implementation NetworkService
 
-+ (void)fetchDataWithDictionaryRootByUrl:(NSURL * _Nonnull)url
-                        completion:(void (^ _Nonnull)(NSDictionary * _Nullable data, NSError * _Nullable error))completionHandler {
-
-    [[NSURLSession.sharedSession dataTaskWithURL:url
-                               completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        
-        NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
-        
-        if (error || httpResponse.statusCode != 200)
-            completionHandler(nil, error);
-        
-        NSError *serializationError = nil;
-        
-        NSDictionary *serialized = [NSJSONSerialization JSONObjectWithData:data
-                                                                   options:0
-                                                                     error:&serializationError];
-        
-        if (serializationError)
-            completionHandler(nil, error);
-        
-        completionHandler(serialized, nil);
-        
-    }] resume];
-}
-
-+ (void)fetchDataWithArrayRootByUrl:(NSURL * _Nonnull)url
-                   completion:(void (^ _Nonnull)(NSArray * _Nullable data, NSError * _Nullable error))completionHandler {
++ (void)fetchObjectByUrl:(NSURL * _Nonnull)url
+              completion:(void (^ _Nonnull)(NSData * _Nullable data, NSError * _Nullable error))completionHandler {
     
     [[NSURLSession.sharedSession dataTaskWithURL:url
                                completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
@@ -45,16 +20,7 @@
         if (error || httpResponse.statusCode != 200)
             completionHandler(nil, error);
         
-        NSError *serializationError = nil;
-        
-        NSArray *serialized = [NSJSONSerialization JSONObjectWithData:data
-                                                                   options:0
-                                                                     error:&serializationError];
-        
-        if (serializationError)
-            completionHandler(nil, error);
-        
-        completionHandler(serialized, nil);
+        completionHandler(data, nil);
         
     }] resume];
 }

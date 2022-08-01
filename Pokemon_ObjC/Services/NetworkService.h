@@ -9,10 +9,7 @@
 
 @interface NetworkService : NSObject
 
-+ (void)fetchDataWithDictionaryRootByUrl:(NSURL * _Nonnull)url
-                        completion:(void (^ _Nonnull)(NSDictionary * _Nullable data, NSError * _Nullable error))completionHandler;
-
-+ (void)fetchDataWithArrayRootByUrl:(NSURL * _Nonnull)url
-                   completion:(void (^ _Nonnull)(NSArray * _Nullable data, NSError * _Nullable error))completionHandler;
++ (void)fetchObjectByUrl:(NSURL * _Nonnull)url
+              completion:(void (^ _Nonnull)(NSData * _Nullable data, NSError * _Nullable error))completionHandler;
 
 @end

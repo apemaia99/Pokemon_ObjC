@@ -7,10 +7,11 @@
 
 #import "PokedexVC.h"
 #import "NetworkService.h"
+#import "PokemonIndex.h"
 
 @interface PokedexVC ()
 //MARK: - Private Properties and Methods Blueprints
-@property(strong, null_unspecified, nonatomic) UITableView *tableView;
+@property(strong, null_unspecified) UITableView *tableView;
 
 - (void)configureVC;
 
@@ -28,15 +29,25 @@
     self.tableView = [self createTableView];
     
     
-    [NetworkService fetchDataWithDictionaryRootByUrl: [NSURL URLWithString:@"https://pokeapi.co/api/v2/pokemon/6/"]
-                        completion:^(NSDictionary * _Nullable data, NSError * _Nullable error) {
+    [NetworkService fetchObjectByUrl: [NSURL URLWithString:@"https://pokeapi.co/api/v2/pokemon"]
+                          completion:^(NSData * _Nullable data, NSError * _Nullable error) {
+        
+        PokemonIndex * test = [PokemonIndex initFromData:data];
+        
+        [test getCurrentInfo];
         
         
-        for (NSDictionary *key in data) {
-            NSLog(@"%@", [data objectForKey:key]);
+        [NetworkService fetchObjectByUrl:test.anchors.firstObject.url completion:^(NSData * _Nullable data, NSError * _Nullable error) {
             
-        }
+            NSDictionary * req2 = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            NSLog(@"opsla");
+            
+        }];
+        
+        
     }];
+    
+    
     
 }
 //MARK: - Views Configuration
