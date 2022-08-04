@@ -12,9 +12,13 @@
 		68169CA52893526A00A37430 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 68169CA42893526A00A37430 /* Assets.xcassets */; };
 		68169CA82893526A00A37430 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68169CA62893526A00A37430 /* LaunchScreen.storyboard */; };
 		68169CAB2893526A00A37430 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68169CAA2893526A00A37430 /* main.m */; };
+		684D12FD289A8DA100F864B2 /* PokedexRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 684D12FC289A8DA100F864B2 /* PokedexRow.m */; };
+		6852123728988BC900FFE02E /* Pokemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852123628988BC900FFE02E /* Pokemon.m */; };
+		6852123E2898947B00FFE02E /* PokemonSprites.m in Sources */ = {isa = PBXBuildFile; fileRef = 6852123D2898947B00FFE02E /* PokemonSprites.m */; };
 		68543104289728890095C9A5 /* PokemonIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = 68543103289728890095C9A5 /* PokemonIndex.m */; };
 		6854310928973E830095C9A5 /* PokemonAnchor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6854310828973E830095C9A5 /* PokemonAnchor.m */; };
 		687459FA2895E15200C1F18D /* NetworkService.m in Sources */ = {isa = PBXBuildFile; fileRef = 687459F92895E15200C1F18D /* NetworkService.m */; };
+		68AF1A992899613100A87BBF /* PokemonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AF1A982899613100A87BBF /* PokemonManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,12 +31,20 @@
 		68169CA72893526A00A37430 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		68169CA92893526A00A37430 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		68169CAA2893526A00A37430 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		684D12FB289A8DA100F864B2 /* PokedexRow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PokedexRow.h; sourceTree = "<group>"; };
+		684D12FC289A8DA100F864B2 /* PokedexRow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PokedexRow.m; sourceTree = "<group>"; };
+		6852123528988AE300FFE02E /* Pokemon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Pokemon.h; sourceTree = "<group>"; };
+		6852123628988BC900FFE02E /* Pokemon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Pokemon.m; sourceTree = "<group>"; };
+		6852123C2898946000FFE02E /* PokemonSprites.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PokemonSprites.h; sourceTree = "<group>"; };
+		6852123D2898947B00FFE02E /* PokemonSprites.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PokemonSprites.m; sourceTree = "<group>"; };
 		68543103289728890095C9A5 /* PokemonIndex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PokemonIndex.m; sourceTree = "<group>"; };
 		685431052897289D0095C9A5 /* PokemonIndex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PokemonIndex.h; sourceTree = "<group>"; };
 		6854310628972EAD0095C9A5 /* PokemonAnchor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PokemonAnchor.h; sourceTree = "<group>"; };
 		6854310828973E830095C9A5 /* PokemonAnchor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PokemonAnchor.m; sourceTree = "<group>"; };
 		687459F82895E11200C1F18D /* NetworkService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkService.h; sourceTree = "<group>"; };
 		687459F92895E15200C1F18D /* NetworkService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkService.m; sourceTree = "<group>"; };
+		68AF1A96289960B300A87BBF /* PokemonManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PokemonManager.h; sourceTree = "<group>"; };
+		68AF1A982899613100A87BBF /* PokemonManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PokemonManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +63,8 @@
 			children = (
 				68169C9E2893526900A37430 /* PokedexVC.h */,
 				68169C9F2893526900A37430 /* PokedexVC.m */,
+				684D12FB289A8DA100F864B2 /* PokedexRow.h */,
+				684D12FC289A8DA100F864B2 /* PokedexRow.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -78,6 +92,7 @@
 				68169C992893526900A37430 /* AppDelegate.m */,
 				68543107289734F10095C9A5 /* Models */,
 				680C39BA2893FE7B00BB212A /* Views */,
+				68AF1A97289960BD00A87BBF /* Controllers */,
 				687459FC289601A700C1F18D /* Services */,
 				68169CA42893526A00A37430 /* Assets.xcassets */,
 				68169CA62893526A00A37430 /* LaunchScreen.storyboard */,
@@ -92,6 +107,10 @@
 			children = (
 				685431052897289D0095C9A5 /* PokemonIndex.h */,
 				68543103289728890095C9A5 /* PokemonIndex.m */,
+				6852123528988AE300FFE02E /* Pokemon.h */,
+				6852123628988BC900FFE02E /* Pokemon.m */,
+				6852123C2898946000FFE02E /* PokemonSprites.h */,
+				6852123D2898947B00FFE02E /* PokemonSprites.m */,
 				6854310628972EAD0095C9A5 /* PokemonAnchor.h */,
 				6854310828973E830095C9A5 /* PokemonAnchor.m */,
 			);
@@ -105,6 +124,15 @@
 				687459F92895E15200C1F18D /* NetworkService.m */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		68AF1A97289960BD00A87BBF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				68AF1A96289960B300A87BBF /* PokemonManager.h */,
+				68AF1A982899613100A87BBF /* PokemonManager.m */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,7 +208,11 @@
 				68169C9A2893526900A37430 /* AppDelegate.m in Sources */,
 				6854310928973E830095C9A5 /* PokemonAnchor.m in Sources */,
 				68543104289728890095C9A5 /* PokemonIndex.m in Sources */,
+				684D12FD289A8DA100F864B2 /* PokedexRow.m in Sources */,
+				68AF1A992899613100A87BBF /* PokemonManager.m in Sources */,
 				687459FA2895E15200C1F18D /* NetworkService.m in Sources */,
+				6852123E2898947B00FFE02E /* PokemonSprites.m in Sources */,
+				6852123728988BC900FFE02E /* Pokemon.m in Sources */,
 				68169CAB2893526A00A37430 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

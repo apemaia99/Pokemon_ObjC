@@ -11,6 +11,4 @@
 
 @property(strong, nonatomic) UIWindow *window;
 
-- (UINavigationController *)createRootVC;
-
 @end

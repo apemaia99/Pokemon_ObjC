@@ -6,7 +6,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PokemonManager.h"
 
 @interface PokedexVC : UIViewController <UITableViewDelegate, UITableViewDataSource>
-//MARK: - Public Properties and Methods Blueprints
+
++ (instancetype)initWithPokemonManager:(PokemonManager *)pokemonManager;
+
 @end

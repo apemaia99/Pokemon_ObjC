@@ -9,8 +9,8 @@
 
 @interface PokemonAnchor : NSObject
 
-@property(nonnull) NSString *name;
-@property(nonnull) NSURL *url;
+@property(readonly, nonnull) NSString *name;
+@property(readonly, nonnull) NSURL *url;
 
 + (instancetype _Nonnull) initWithName:(NSString * _Nonnull)name url:(NSURL * _Nonnull)url;
 

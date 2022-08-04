@@ -6,49 +6,38 @@
 //
 
 #import "PokedexVC.h"
-#import "NetworkService.h"
-#import "PokemonIndex.h"
+#import "PokemonManager.h"
+#import "PokedexRow.h"
 
 @interface PokedexVC ()
-//MARK: - Private Properties and Methods Blueprints
+
+@property(strong, nonnull) PokemonManager *pokemonManager;
 @property(strong, null_unspecified) UITableView *tableView;
 
 - (void)configureVC;
-
 - (UITableView *_Nonnull)createTableView;
-
 - (UIBarButtonItem *_Nonnull)createNavBarMenu;
 
 @end
 
 @implementation PokedexVC
 
++ (instancetype)initWithPokemonManager:(PokemonManager *)pokemonManager {
+    //Dependency Injection
+    PokedexVC *newInstance = [[PokedexVC alloc] init];
+    newInstance.pokemonManager = pokemonManager;
+    
+    return newInstance;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configureVC];
     self.tableView = [self createTableView];
     
-    
-    [NetworkService fetchObjectByUrl: [NSURL URLWithString:@"https://pokeapi.co/api/v2/pokemon"]
-                          completion:^(NSData * _Nullable data, NSError * _Nullable error) {
-        
-        PokemonIndex * test = [PokemonIndex initFromData:data];
-        
-        [test getCurrentInfo];
-        
-        
-        [NetworkService fetchObjectByUrl:test.anchors.firstObject.url completion:^(NSData * _Nullable data, NSError * _Nullable error) {
-            
-            NSDictionary * req2 = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-            NSLog(@"opsla");
-            
-        }];
-        
-        
+    [self.pokemonManager loadFirstTimeWithCompletion:^{
+        [self.tableView reloadData];
     }];
-    
-    
-    
 }
 //MARK: - Views Configuration
 - (void)configureVC {
@@ -63,6 +52,7 @@
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleInsetGrouped];
     tableView.rowHeight = 90;
     
+    [tableView registerClass:[PokedexRow class] forCellReuseIdentifier:@"PokedexRow"];
     tableView.delegate = self;
     tableView.dataSource = self;
     
@@ -85,21 +75,24 @@
          image:nil
          identifier:nil
          handler:^(__kindof UIAction * _Nonnull action) {
-            
+            [self.pokemonManager sortListByMode:alphabetical];
+            [self.tableView reloadData];
         }],
         [UIAction
          actionWithTitle:@"Reverse"
          image:nil
          identifier:nil
          handler:^(__kindof UIAction * _Nonnull action) {
-            
+            [self.pokemonManager sortListByMode:reverse];
+            [self.tableView reloadData];
         }],
         [UIAction
          actionWithTitle:@"Standard"
          image:nil
          identifier:nil
          handler:^(__kindof UIAction * _Nonnull action) {
-            
+            [self.pokemonManager sortListByMode:standard];
+            [self.tableView reloadData];
         }]
     ];
     
@@ -119,11 +112,16 @@
 
 //MARK: - TableView Delegates
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.pokemonManager.pokemonList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [[UITableViewCell alloc] init];
+    
+    PokedexRow *cell = [tableView dequeueReusableCellWithIdentifier:@"PokedexRow"];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    [cell setDataWithPokemon:self.pokemonManager.pokemonList[indexPath.row]];
+    
+    return cell;
 }
 
 @end

@@ -5,8 +5,14 @@
 //  Created by Alessandro Di Maio on 01/08/22.
 //
 
-#import <Foundation/Foundation.h>
 #import "PokemonAnchor.h"
+
+@interface PokemonAnchor ()
+
+@property(readwrite, nonnull) NSString *name;
+@property(readwrite, nonnull) NSURL *url;
+
+@end
 
 @implementation PokemonAnchor
 

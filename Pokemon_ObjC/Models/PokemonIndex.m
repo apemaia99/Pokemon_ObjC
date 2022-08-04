@@ -7,6 +7,15 @@
 
 #import "PokemonIndex.h"
 
+@interface PokemonIndex ()
+
+@property(readwrite) unsigned int count;
+@property(readwrite, nullable) NSURL *next;
+@property(readwrite, nullable) NSURL *previous;
+@property(readwrite, nullable) NSArray<PokemonAnchor *> *anchors;
+
+@end
+
 @implementation PokemonIndex
 
 + (instancetype _Nonnull) initFromData:(NSData * _Nonnull)data {

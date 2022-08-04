@@ -10,16 +10,12 @@
 
 @interface PokemonIndex : NSObject
 
-@property unsigned int count;
-@property(nullable) NSURL *next;
-@property(nullable) NSURL *previous;
-@property(nullable) NSArray<PokemonAnchor *> *anchors;
+@property(readonly) unsigned int count;
+@property(readonly, nullable) NSURL *next;
+@property(readonly, nullable) NSURL *previous;
+@property(readonly, nullable) NSArray<PokemonAnchor *> *anchors;
 
 + (instancetype _Nonnull) initFromData:(NSData * _Nonnull)data;
-
 - (void) getCurrentInfo;
 
 @end
-
-
-
