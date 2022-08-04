@@ -19,7 +19,7 @@
     
     PokemonSprites *newInstance = [[PokemonSprites alloc] init];
     
-    newInstance.front_default = [dictionary objectForKey:@"front_default"];
+    newInstance.front_default = [[NSURL alloc] initWithString:[dictionary objectForKey:@"front_default"]];
     
     return newInstance;
 }

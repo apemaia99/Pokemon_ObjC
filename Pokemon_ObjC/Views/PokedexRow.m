@@ -6,6 +6,7 @@
 //
 
 #import "PokedexRow.h"
+#import "NetworkService.h"
 
 @interface PokedexRow ()
 
@@ -35,7 +36,11 @@
 - (void)setDataWithPokemon:(Pokemon*)pokemon {
     self.pokemonNameLabelView.text = [pokemon.name capitalizedString];
     self.pokemonMovesLabelView.text = [[NSString alloc] initWithFormat:@"%@%lu", @"Number of moves: ",pokemon.moves.count];
-    //    fetch async image
+    [NetworkService fetchObjectByUrl:pokemon.sprites.front_default completion:^(NSData * _Nullable data, NSError * _Nullable error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.pokemonImageView.image = [[UIImage alloc] initWithData:data];
+        });
+    }];
 }
 
 - (UIImageView *)createPokemonImageView {

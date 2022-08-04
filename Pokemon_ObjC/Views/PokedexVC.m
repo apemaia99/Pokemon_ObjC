@@ -6,7 +6,6 @@
 //
 
 #import "PokedexVC.h"
-#import "PokemonManager.h"
 #import "PokedexRow.h"
 
 @interface PokedexVC ()
