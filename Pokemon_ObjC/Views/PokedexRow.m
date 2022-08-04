@@ -35,7 +35,7 @@
 - (void)setDataWithPokemon:(Pokemon*)pokemon {
     self.pokemonNameLabelView.text = [pokemon.name capitalizedString];
     self.pokemonMovesLabelView.text = [[NSString alloc] initWithFormat:@"%@%lu", @"Number of moves: ",pokemon.moves.count];
-//    fetch async image
+    //    fetch async image
 }
 
 - (UIImageView *)createPokemonImageView {

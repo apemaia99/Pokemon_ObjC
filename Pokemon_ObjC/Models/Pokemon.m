@@ -42,7 +42,7 @@
     
     for (NSDictionary *moveAnchor in [serialized objectForKey:@"moves"]) {
         [temporaryAnchors addObject:[PokemonAnchor initWithName:[[moveAnchor objectForKey:@"move"] objectForKey:@"name"]
-                                                                url:[NSURL URLWithString:[[moveAnchor objectForKey:@"move"] objectForKey:@"url"]]
+                                                            url:[NSURL URLWithString:[[moveAnchor objectForKey:@"move"] objectForKey:@"url"]]
                                     ]];
     }
     
