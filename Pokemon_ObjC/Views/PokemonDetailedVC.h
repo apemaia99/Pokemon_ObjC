@@ -6,7 +6,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NetworkService.h"
+#import "Pokemon.h"
 
-@interface PokemonDetailedVC : UIViewController
+@interface PokemonDetailedVC : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
++ (instancetype)initWithPokemon:(Pokemon *)pokemon;
 
 @end

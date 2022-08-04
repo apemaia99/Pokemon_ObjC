@@ -130,7 +130,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    PokemonDetailedVC *pokemonDetailedVC = [[PokemonDetailedVC alloc] init];
+    PokemonDetailedVC *pokemonDetailedVC = [PokemonDetailedVC initWithPokemon:self.pokemonManager.pokemonList[indexPath.row]];
     [self.navigationController pushViewController:pokemonDetailedVC animated:YES];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
