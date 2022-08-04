@@ -6,7 +6,6 @@
 //
 
 #import "PokedexVC.h"
-#import "PokedexRow.h"
 
 @interface PokedexVC ()
 
@@ -115,12 +114,25 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    //Pagination
+    if (indexPath.row == [self.tableView numberOfRowsInSection:0] - 1) {
+        [self.pokemonManager loadMoreWithCompletion:^{
+            [self.tableView reloadData];
+        }];
+    }
+    //Cell setup
     PokedexRow *cell = [tableView dequeueReusableCellWithIdentifier:@"PokedexRow"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     [cell setDataWithPokemon:self.pokemonManager.pokemonList[indexPath.row]];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    PokemonDetailedVC *pokemonDetailedVC = [[PokemonDetailedVC alloc] init];
+    [self.navigationController pushViewController:pokemonDetailedVC animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

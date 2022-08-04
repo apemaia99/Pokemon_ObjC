@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Pokemon.h"
+#import "NetworkService.h"
 
 @interface PokedexRow : UITableViewCell
 

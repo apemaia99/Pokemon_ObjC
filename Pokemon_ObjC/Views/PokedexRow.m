@@ -6,7 +6,6 @@
 //
 
 #import "PokedexRow.h"
-#import "NetworkService.h"
 
 @interface PokedexRow ()
 

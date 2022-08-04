@@ -7,6 +7,8 @@
 
 #import <UIKit/UIKit.h>
 #import "PokemonManager.h"
+#import "PokemonDetailedVC.h"
+#import "PokedexRow.h"
 
 @interface PokedexVC : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
