@@ -33,7 +33,7 @@
     [self configureVC];
     self.tableView = [self createTableView];
 }
-
+//MARK: - Views Setup
 - (void)configureVC {
     self.title = [self.pokemon.name capitalizedString];
     self.navigationController.navigationBar.prefersLargeTitles = YES;
@@ -63,9 +63,6 @@
     
     UITableViewCell *imageCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"image"];
     UIImageView *imageView = [[UIImageView alloc] init];
-    
-    [imageView setFrame:CGRectMake(0, 0, 200, 200)];
-    [imageView setContentMode:UIViewContentModeScaleAspectFill];
     
     [imageCell addSubview:imageView];
     
@@ -97,7 +94,7 @@
     
     return cell;
 }
-
+//MARK: - Delegates
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
 }

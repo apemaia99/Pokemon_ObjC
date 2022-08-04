@@ -37,7 +37,7 @@
         [self.tableView reloadData];
     }];
 }
-//MARK: - Views Configuration
+//MARK: - Views Setup
 - (void)configureVC {
     self.title = @"Pokedex";
     self.navigationController.navigationBar.prefersLargeTitles = YES;
@@ -108,7 +108,7 @@
     return button;
 }
 
-//MARK: - TableView Delegates
+//MARK: - Delegates
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.pokemonManager.pokemonList.count;
 }

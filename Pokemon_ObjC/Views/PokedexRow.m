@@ -41,7 +41,7 @@
         });
     }];
 }
-
+//MARK: - Views Setup
 - (UIImageView *)createPokemonImageView {
     
     UIImageView *imageView = [[UIImageView alloc] init];
