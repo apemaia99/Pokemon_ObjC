@@ -35,10 +35,15 @@
 - (void)setDataWithPokemon:(Pokemon*)pokemon {
     self.pokemonNameLabelView.text = [pokemon.name capitalizedString];
     self.pokemonMovesLabelView.text = [[NSString alloc] initWithFormat:@"%@%lu", @"Number of moves: ",pokemon.moves.count];
-    [NetworkService fetchObjectByUrl:pokemon.sprites.front_default completion:^(NSData * _Nullable data, NSError * _Nullable error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            self.pokemonImageView.image = [[UIImage alloc] initWithData:data];
-        });
+    [NetworkService.sharedInstance fetchObjectByUrlWithCache:pokemon.sprites.front_default
+                                                  completion:^(NSData * _Nullable data, NSError * _Nullable error) {
+        if (!error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.pokemonImageView.image = [[UIImage alloc] initWithData:data];
+            });
+        } else {
+            NSLog(@"Error: %@ - (PokemonDetailedVC: createImageCellByUrl)", error.localizedDescription);
+        }
     }];
 }
 //MARK: - Views Setup

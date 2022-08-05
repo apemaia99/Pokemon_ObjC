@@ -70,10 +70,14 @@
     [imageView.centerXAnchor constraintEqualToAnchor:imageCell.centerXAnchor].active = YES;
     [imageView.centerYAnchor constraintEqualToAnchor:imageCell.centerYAnchor].active = YES;
     
-    [NetworkService fetchObjectByUrl:url completion:^(NSData * _Nullable data, NSError * _Nullable error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            imageView.image = [UIImage imageWithData:data];
-        });
+    [NetworkService.sharedInstance fetchObjectByUrlWithCache:url completion:^(NSData * _Nullable data, NSError * _Nullable error) {
+        if (!error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                imageView.image = [UIImage imageWithData:data];
+            });
+        } else {
+            NSLog(@"Error: %@ - (PokemonDetailedVC: createImageCellByUrl)", error.localizedDescription);
+        }
     }];
     
     return imageCell;

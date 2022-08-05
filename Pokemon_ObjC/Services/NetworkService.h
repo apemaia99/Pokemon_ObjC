@@ -9,7 +9,12 @@
 
 @interface NetworkService : NSObject
 
++ (instancetype _Nonnull)sharedInstance;
+
 + (void)fetchObjectByUrl:(NSURL * _Nonnull)url
+              completion:(void (^ _Nonnull)(NSData * _Nullable data, NSError * _Nullable error))completionHandler;
+
+- (void)fetchObjectByUrlWithCache:(NSURL * _Nonnull)url
               completion:(void (^ _Nonnull)(NSData * _Nullable data, NSError * _Nullable error))completionHandler;
 
 @end
