@@ -16,6 +16,7 @@
 - (void)configureVC;
 - (UITableView *_Nonnull)createTableView;
 - (UIBarButtonItem *_Nonnull)createNavBarMenu;
+- (UISearchController *)createSearch;
 
 @end
 
@@ -33,19 +34,11 @@
     [super viewDidLoad];
     [self configureVC];
     self.tableView = [self createTableView];
+    self.search = [self createSearch];
     
     [self.pokemonManager loadFirstTimeWithCompletion:^{
         [self.tableView reloadData];
     }];
-    
-    
-    
-    self.search = [[UISearchController alloc] init];
-    self.search.searchResultsUpdater = self;
-    self.navigationItem.searchController = self.search;
-   
-    
-    
 }
 //MARK: - Views Setup
 - (void)configureVC {
@@ -82,21 +75,21 @@
                             image:nil
                        identifier:nil
                           handler:^(__kindof UIAction * _Nonnull action) {
-            [self.pokemonManager sortListByMode:alphabetical];
+            [self.pokemonManager sortPokemonsByMode:alphabetical];
             [self.tableView reloadData];
         }],
         [UIAction actionWithTitle:@"Reverse"
                             image:nil
                        identifier:nil
                           handler:^(__kindof UIAction * _Nonnull action) {
-            [self.pokemonManager sortListByMode:reverse];
+            [self.pokemonManager sortPokemonsByMode:reverse];
             [self.tableView reloadData];
         }],
         [UIAction actionWithTitle:@"Standard"
                             image:nil
                        identifier:nil
                           handler:^(__kindof UIAction * _Nonnull action) {
-            [self.pokemonManager sortListByMode:standard];
+            [self.pokemonManager sortPokemonsByMode:standard];
             [self.tableView reloadData];
         }]
     ];
@@ -115,29 +108,44 @@
     return button;
 }
 
+- (UISearchController *)createSearch {
+    
+    UISearchController *search = [[UISearchController alloc] init];
+    search.searchResultsUpdater = self;
+    self.navigationItem.searchController = search;
+    
+    return search;
+}
+
 //MARK: - Delegates
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.pokemonManager.pokemonFiltered.count <= 0 ? self.pokemonManager.pokemonList.count : self.pokemonManager.pokemonFiltered.count;
+    return [self.pokemonManager filteredPokemons].count <= 0 ? [self.pokemonManager allPokemons].count : [self.pokemonManager filteredPokemons].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    //Pagination
+    if (!self.search.isActive && indexPath.row == [self.tableView numberOfRowsInSection:0] - 1) {
+        [self.pokemonManager loadMoreWithCompletion:^{
+            [self.tableView reloadData];
+        }];
+    }
+    //Cell setup
     PokedexRow *cell = [tableView dequeueReusableCellWithIdentifier:@"PokedexRow"];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
-    if (self.pokemonManager.pokemonFiltered.count <= 0) {
-        [cell setDataWithPokemon:self.pokemonManager.pokemonList[indexPath.row]];
+    if ([self.pokemonManager filteredPokemons].count <= 0) {
+        [cell setDataWithPokemon:[self.pokemonManager allPokemons][indexPath.row]];
     } else {
-        [cell setDataWithPokemon:self.pokemonManager.pokemonFiltered[indexPath.row]];
+        [cell setDataWithPokemon:[self.pokemonManager filteredPokemons][indexPath.row]];
     }
-    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     PokemonDetailedVC *pokemonDetailedVC = [PokemonDetailedVC initWithPokemon: !self.search.isActive ?
-                                            self.pokemonManager.pokemonList[indexPath.row] : self.pokemonManager.pokemonFiltered[indexPath.row]];
+                                            [self.pokemonManager allPokemons][indexPath.row] :
+                                            [self.pokemonManager filteredPokemons][indexPath.row]];
     
     [self.navigationController pushViewController:pokemonDetailedVC animated:YES];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -145,7 +153,7 @@
 
 - (void)updateSearchResultsForSearchController:(nonnull UISearchController *)searchController {
     if (searchController.isActive)
-        [self.pokemonManager filterListByText:searchController.searchBar.text];
+        [self.pokemonManager filterPokemonsByText:searchController.searchBar.text];
     
     [self.tableView reloadData];
 }

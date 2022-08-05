@@ -69,7 +69,7 @@
     [self getDataByUrl:[NSURL URLWithString:@"https://pokeapi.co/api/v2/pokemon/"] completion:^(NSData * _Nullable data) {
         self.pokemonIndex = [PokemonIndex initFromData:data];
         [self getPokemons:^{
-            [self sortListByMode:standard];
+            [self sortPokemonsByMode:standard];
             completionHandler();
         }];
     }];
@@ -95,7 +95,7 @@
     }];
 }
 
-- (void)sortListByMode:(OrderMode)mode {
+- (void)sortPokemonsByMode:(OrderMode)mode {
     
     NSSortDescriptor *sortRule;
     
@@ -115,19 +115,23 @@
     [self.pokemonList sortUsingDescriptors:@[sortRule]];
 }
 
-- (void)filterListByText:(NSString *_Nonnull)text {
+- (void)filterPokemonsByText:(NSString *_Nonnull)text {
     
-    
-    
-    NSPredicate *p = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
-        
-        Pokemon *hit = (Pokemon *)evaluatedObject;
-        
-        return [hit.name localizedCaseInsensitiveContainsString:text];
+    NSPredicate *filter = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        Pokemon *element = (Pokemon *)evaluatedObject;
+        return [element.name localizedCaseInsensitiveContainsString:text];
     }];
     
     [self.pokemonFiltered removeAllObjects];
-    [self.pokemonFiltered addObjectsFromArray:[self.pokemonList filteredArrayUsingPredicate:p]];
+    [self.pokemonFiltered addObjectsFromArray:[self.pokemonList filteredArrayUsingPredicate:filter]];
+}
+
+- (NSArray *)allPokemons {
+    return self.pokemonList;
+}
+
+- (NSArray *_Nullable)filteredPokemons {
+    return self.pokemonFiltered;
 }
 
 @end
