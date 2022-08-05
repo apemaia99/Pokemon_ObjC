@@ -12,6 +12,7 @@
 @property(nonnull, readwrite) NSMutableArray<Pokemon *> *pokemonList;
 @property(nullable, readwrite) NSMutableArray<Pokemon *> *pokemonFiltered;
 @property(nullable) PokemonIndex *pokemonIndex;
+@property OrderMode lastOrderingMode;
 
 - (void)getDataByUrl:(NSURL *)url completion:(void (^ _Nonnull)(NSData * _Nullable data))completionHandler;
 - (void)getPokemons:(void (^ _Nonnull)(void))completionHandler;
@@ -69,7 +70,7 @@
     [self getDataByUrl:[NSURL URLWithString:@"https://pokeapi.co/api/v2/pokemon/"] completion:^(NSData * _Nullable data) {
         self.pokemonIndex = [PokemonIndex initFromData:data];
         [self getPokemons:^{
-            [self sortPokemonsByMode:standard];
+            [self sortPokemonsByMode:self.lastOrderingMode];
             completionHandler();
         }];
     }];
@@ -90,12 +91,15 @@
     [self getDataByUrl:self.pokemonIndex.next completion:^(NSData * _Nullable data) {
         self.pokemonIndex = [PokemonIndex initFromData:data];
         [self getPokemons:^{
+            [self sortPokemonsByMode:self.lastOrderingMode];
             completionHandler();
         }];
     }];
 }
 
 - (void)sortPokemonsByMode:(OrderMode)mode {
+    
+    self.lastOrderingMode = mode;
     
     NSSortDescriptor *sortRule;
     
