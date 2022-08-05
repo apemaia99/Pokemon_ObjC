@@ -25,8 +25,10 @@
     NSError *serializationError = nil;
     NSDictionary *serialized = [NSJSONSerialization JSONObjectWithData:data options:0 error:&serializationError];
     
-    if (serializationError)
-        printf("SERIAL ERROR");
+    if (serializationError) {
+        printf("SERIALIZATION ERROR\n");
+        return nil;
+    }
     
     newIstance.count = [[serialized objectForKey:@"count"] intValue];
     

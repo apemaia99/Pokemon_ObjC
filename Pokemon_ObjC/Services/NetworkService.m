@@ -34,11 +34,11 @@
         
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         
-        if (error || httpResponse.statusCode != 200)
+        if (error || httpResponse.statusCode != 200) {
             completionHandler(nil, error);
-        
-        completionHandler(data, nil);
-        
+        } else {
+            completionHandler(data, nil);
+        }
     }] resume];
 }
 
@@ -49,11 +49,12 @@
         completionHandler([self.cache objectForKey:url], nil);
     } else {
         [NetworkService fetchObjectByUrl:url completion:^(NSData * _Nullable data, NSError * _Nullable error) {
-            if (error)
+            if (error) {
                 completionHandler(nil, error);
-            
-            [self.cache setObject:data forKey:url];
-            completionHandler(data, nil);
+            } else {
+                [self.cache setObject:data forKey:url];
+                completionHandler(data, nil);
+            }
         }];
     }
 }
