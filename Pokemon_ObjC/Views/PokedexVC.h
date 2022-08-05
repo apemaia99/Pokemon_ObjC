@@ -10,7 +10,7 @@
 #import "PokemonDetailedVC.h"
 #import "PokedexRow.h"
 
-@interface PokedexVC : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface PokedexVC : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating>
 
 + (instancetype)initWithPokemonManager:(PokemonManager *)pokemonManager;
 

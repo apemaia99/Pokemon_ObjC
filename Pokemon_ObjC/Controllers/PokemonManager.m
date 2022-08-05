@@ -115,4 +115,19 @@
     [self.pokemonList sortUsingDescriptors:@[sortRule]];
 }
 
+- (void)filterListByText:(NSString *_Nonnull)text {
+    
+    
+    
+    NSPredicate *p = [NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        
+        Pokemon *hit = (Pokemon *)evaluatedObject;
+        
+        return [hit.name localizedCaseInsensitiveContainsString:text];
+    }];
+    
+    [self.pokemonFiltered removeAllObjects];
+    [self.pokemonFiltered addObjectsFromArray:[self.pokemonList filteredArrayUsingPredicate:p]];
+}
+
 @end

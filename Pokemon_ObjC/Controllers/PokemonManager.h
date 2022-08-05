@@ -19,11 +19,12 @@ typedef NS_ENUM(NSInteger, OrderMode) {
 };
 
 @property(nonnull, readonly) NSMutableArray<Pokemon *> *pokemonList;
-@property(nullable, readonly) NSMutableArray<Pokemon *> *pokemonFiltered;
+@property(nonnull, readonly) NSMutableArray<Pokemon *> *pokemonFiltered;
 
 + (instancetype _Nullable)init;
 - (void)loadFirstTimeWithCompletion:(void (^ _Nonnull)(void))completionHandler;
 - (void)loadMoreWithCompletion:(void (^ _Nonnull)(void))completionHandler;
 - (void)sortListByMode:(OrderMode)mode;
+- (void)filterListByText:(NSString *_Nonnull)text;
 
 @end
